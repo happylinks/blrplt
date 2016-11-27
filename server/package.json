@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "configure.js",
+  "dependencies": {
+    "aws-serverless-express": "^1.1.1",
+    "babel-polyfill": "^6.16.0",
+    "body-parser": "^1.15.2",
+    "classnames": "^2.2.5",
+    "cors": "^2.8.1",
+    "es6-promise": "^4.0.5",
+    "express": "^4.14.0",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-helmet": "^3.2.2",
+    "react-redux": "^4.4.6",
+    "react-router": "v4.0.0-alpha.6",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-saga": "^0.13.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+

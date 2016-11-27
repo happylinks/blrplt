@@ -1,0 +1,9 @@
+.happypack
+.vscode/.browse.VC.db*
+/node_modules
+/server/node_modules
+/build*
+/public
+.DS_Store
+npm-debug.log
+lambda-function.zip

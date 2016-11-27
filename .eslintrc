@@ -1,0 +1,30 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "airbnb-flow"
+  ],
+  "settings": {
+    "import/resolver": "webpack"
+  },
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "classes": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "globals": {
+    "React": true,
+    "ReactDOM": true
+  },
+  "rules": {
+    "global-require": 0
+  }
+}
