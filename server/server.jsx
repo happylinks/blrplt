@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import awsServerlessExpressMiddleware from 'aws-serverless-express/middleware';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
-import { ServerRouter, createServerRenderContext } from 'react-router'
+import { createServerRenderContext } from 'react-router';
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -36,7 +36,6 @@ app.use(awsServerlessExpressMiddleware.eventContext());
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
 app.get('*', (req, res) => {
-  const location = req.url;
   const store = configureStore();
   const context = createServerRenderContext();
 
@@ -56,13 +55,11 @@ app.get('*', (req, res) => {
     const result = context.getResult();
     if (result.redirect) {
       res.writeHead(301, {
-        Location: result.redirect.pathname
-      })
-      res.end()
-    } else {
-      if (result.missed) {
-        res.writeHead(404);
-      }
+        Location: result.redirect.pathname,
+      });
+      res.end();
+    } else if (result.missed) {
+      res.writeHead(404);
     }
 
     res.write(html);
