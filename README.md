@@ -1,12 +1,21 @@
-To setup:
+Install:
+```
+yarn install
+```
 
-Create user with permissions:
-cloudformation:CreateStack
-s3:*
-iam:CreateRole
+Run local:
+```
+yarn run start
+```
 
-One time:
+To setup AWS:
+- Create user with permissions from server/aws-policy.json
+- One time run:
+```
 yarn run aws:setup
+```
 
-For new updates:
+For new updates on AWS:
+```
 yarn run deploy
+```
