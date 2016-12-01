@@ -6,7 +6,10 @@ import { BrowserRouter, ServerRouter, Match } from 'react-router';
 import { Layout, Hello } from 'components';
 
 type Props = {
-  store: Object
+  context: Object,
+  store: Object,
+  location: Object,
+  type: String,
 }
 
 class Blrplt extends React.Component { // eslint-disable-line react/prefer-stateless-function

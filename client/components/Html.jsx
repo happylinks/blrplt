@@ -4,7 +4,7 @@ const Helmet = require('react-helmet');
 
 const config = require('../../config/main');
 
-const resolve = (files, props) => files.map(src => {
+const resolve = (files, props) => files.map((src) => {
   if (!props.manifest[src]) { return null; }
   return config.cdn + props.manifest[src];
 }).filter(file => file !== undefined);
@@ -14,7 +14,7 @@ type Props = {
   store: Object,
 };
 
-const Html = (props : Props) => {
+const Html = (props: Props) => {
   const head = Helmet.rewind();
   const { markup, store } = props;
 
@@ -30,7 +30,7 @@ const Html = (props : Props) => {
 
   const initialState = (
     <script
-      dangerouslySetInnerHTML={{
+      dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
         __html: `window.__INITIAL_STATE__=${JSON.stringify(store ? store.getState() : {})};`,
       }}
       charSet="UTF-8"
@@ -38,7 +38,7 @@ const Html = (props : Props) => {
   );
 
   return (
-    <html>
+    <html lang="en">
       <head>
         {head.base.toComponent()}
         {head.title.toComponent()}
@@ -49,7 +49,10 @@ const Html = (props : Props) => {
         <link rel="shortcut icon" href="/favicon.ico" />
       </head>
       <body>
-        <main id="app" dangerouslySetInnerHTML={{ __html: markup }} />
+        <main
+          id="app"
+          dangerouslySetInnerHTML={{ __html: markup }} // eslint-disable-line react/no-danger
+        />
         {initialState}
         {renderScripts}
       </body>

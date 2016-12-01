@@ -5,7 +5,7 @@ module.exports = {
   entry: [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
-    // 'babel-polyfill',
+    'babel-polyfill',
     './client/client.jsx',
   ],
   output: {
