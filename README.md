@@ -1,6 +1,6 @@
 # BLRPLT
 Blrplt is a relatively small boilerplate for [React](https://github.com/facebook/react) + [Redux](https://github.com/reactjs/redux) projects that takes care of server-side-rendering and prefetching API calls with [redux-saga](https://github.com/yelouafi/redux-saga).  
-It let's you develop fast locally and will also let you create a server-script that uses redux-saga to prefetch your first api-calls and add them to your store on the server-side.  
+It lets you develop fast locally and will also let you create a server-script that uses redux-saga to prefetch your first api-calls and add them to your store on the server-side.  
 
 It also provides optional scripts to deploy directly to AWS Lambda by using [AWS Serverless Express](https://github.com/awslabs/aws-serverless-express).
 
@@ -14,7 +14,12 @@ The Serverless Express library is still very new and by providing this boilerpla
 The goal is not to provide a boilerplate that decides your React/Redux setup, but provide the rest; a great way to release your app with server-side rendering.
 
 ## Installation
-To use the boilerplate, use [yarn](https://yarnpkg.com/).  
+To use the boilerplate, use [yarn](https://yarnpkg.com/).
+
+Clone the repository into a folder you want:  
+```
+git clone git@github.com:happylinks/blrplt.git ProjectName  
+```
 
 Install all dependencies for client:  
 ```
@@ -77,3 +82,5 @@ You can put this folder on your server and run `node server.js` there.
 ## Help!!
 If you have any issues using this, please let me know by creating a issue [here](https://github.com/happylinks/blrplt/issues/new).
 
+## What's with the name?  
+*react-redux-saga-aws-serverless-boilerplate* sounded stupid. Also, you can't have a cool project without dropping some vowels.  
