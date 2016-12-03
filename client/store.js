@@ -3,16 +3,16 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware, { END } from 'redux-saga';
 import createLogger from 'redux-logger';
 
-import appConfig from '../config/main';
-
 import rootReducer from 'reducers';
+
+import appConfig from '../config/main';
 
 const sagaMiddleware = createSagaMiddleware();
 const devtools = typeof window === 'function' && window.devToolsExtension ?
   window.devToolsExtension :
   (() => noop => noop);
 
-export default function configureStore(history, initialState: Object) {
+export default function configureStore(initialState: Object) {
   const middlewares = [
     sagaMiddleware,
   ];
@@ -39,11 +39,14 @@ export default function configureStore(history, initialState: Object) {
     store.dispatch(END);
   };
 
-  if (appConfig.env === 'development' && (module).hot) {
-    (module).hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers').default;
-      store.replaceReducer(nextRootReducer);
-    });
+  if (typeof window === 'function') {
+    const module: Object = window.module;
+    if (appConfig.env === 'development' && (module).hot) {
+      (module).hot.accept('./reducers', () => {
+        const nextRootReducer = require('./reducers').default;
+        store.replaceReducer(nextRootReducer);
+      });
+    }
   }
 
   return store;

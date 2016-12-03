@@ -25,17 +25,18 @@ ReactDOM.render(
   document.getElementById('app')
 );
 
-if (module.hot) {
+const module: Object = window.module;
+if (module && module.hot) {
   module.hot.accept('./app', () => {
     const NextApp = require('./app').default;
 
-    ReactDOM.render(
-      (<AppContainer errorReporter={WrappedRedBox}>
+    ReactDOM.render((
+      <AppContainer errorReporter={WrappedRedBox}>
         <NextApp
           store={store}
           type="client"
         />
-      </AppContainer>)
-    , document.getElementById('app'));
+      </AppContainer>
+    ), document.getElementById('app'));
   });
 }

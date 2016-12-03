@@ -5,7 +5,6 @@ import React from 'react';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import awsServerlessExpressMiddleware from 'aws-serverless-express/middleware';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { createServerRenderContext } from 'react-router';
 
@@ -16,6 +15,13 @@ import configureStore from '../client/store';
 import { Html } from '../client/components';
 import App from '../client/app';
 import rootSaga from '../client/sagas';
+
+const serverless = process.env.SERVERLESS;
+
+let awsServerlessExpressMiddleware;
+if (serverless) {
+  awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
+}
 
 const manifest = require('../build/manifest.json');
 
@@ -31,7 +37,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(awsServerlessExpressMiddleware.eventContext());
+
+if (awsServerlessExpressMiddleware) {
+  app.use(awsServerlessExpressMiddleware.eventContext());
+}
 
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
@@ -69,6 +78,9 @@ app.get('*', (req, res) => {
   store.close();
 });
 
-// app.listen(3000);
+if (!serverless) {
+  console.log('listening on port 3000');
+  app.listen(3000);
+}
 
 export default app;

@@ -22,7 +22,8 @@ const config = {
   // Deploy settings
   bucket: 'blrplt',
   apiUrl: '',
-  cdn: 'https://d2df17k7nuk10m.cloudfront.net/',
+  // Insert CDN url here (cloudfront) to correct the path that server.js uses on lambda.
+  cdn: '',
 };
 
 module.exports = config;

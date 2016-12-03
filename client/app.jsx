@@ -6,10 +6,10 @@ import { BrowserRouter, ServerRouter, Match } from 'react-router';
 import { Layout, Hello } from 'components';
 
 type Props = {
-  context: Object,
+  context?: Object,
+  location?: Object,
   store: Object,
-  location: Object,
-  type: String,
+  type: string,
 }
 
 class Blrplt extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -18,6 +18,7 @@ class Blrplt extends React.Component { // eslint-disable-line react/prefer-state
   render() {
     const { context, location, store, type } = this.props;
 
+    // Declare your routes here.
     const layout = (
       <Layout>
         <Match pattern="*" component={Hello} />
