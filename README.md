@@ -1,3 +1,5 @@
+[![bitHound Dependencies](https://www.bithound.io/github/happylinks/blrplt/badges/dependencies.svg)](https://www.bithound.io/github/happylinks/blrplt/develop/dependencies/npm)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/happylinks/blrplt/badges/devDependencies.svg)](https://www.bithound.io/github/happylinks/blrplt/develop/dependencies/npm)  
 # BLRPLT
 Blrplt is a relatively small boilerplate for [React](https://github.com/facebook/react) + [Redux](https://github.com/reactjs/redux) projects that takes care of server-side-rendering and prefetching API calls with [redux-saga](https://github.com/yelouafi/redux-saga).  
 It lets you develop fast locally and will also let you create a server-script that uses redux-saga to prefetch your first api-calls and add them to your store on the server-side.  
