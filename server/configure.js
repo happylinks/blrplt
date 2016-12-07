@@ -34,7 +34,13 @@ if (availableRegions.indexOf(region) === -1) {
     return;
 }
 
+if (!functionName) {
+    console.error('You must supply a function name as the fourth argument');
+    return;
+}
+
 modifySimpleProxyFile();
+modifyCloudformationFile();
 
 function modifySimpleProxyFile() {
     const simpleProxyApiTemplatePath = path.resolve(__dirname, 'simple-proxy-api.yaml.tmpl');
@@ -46,4 +52,14 @@ function modifySimpleProxyFile() {
         .replace(/YOUR_FUNCTION_NAME/g, functionName);
 
     fs.writeFileSync(simpleProxyApiPath, simpleProxyApiModified, 'utf8');
+}
+
+function modifyCloudformationFile() {
+    const cloudformationTemplatePath = path.resolve(__dirname, 'cloudformation.json.tmpl');
+    const cloudformationPath = path.resolve(__dirname, 'cloudformation.json');
+    const cloudformation = fs.readFileSync(cloudformationTemplatePath, 'utf8');
+    const cloudformationModified = cloudformation
+        .replace(/YOUR_FUNCTION_NAME/g, functionName);
+
+    fs.writeFileSync(cloudformationPath, cloudformationModified, 'utf8');
 }

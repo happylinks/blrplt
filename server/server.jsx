@@ -63,16 +63,12 @@ app.get('*', (req, res) => {
 
     const result = context.getResult();
     if (result.redirect) {
-      res.writeHead(301, {
-        Location: result.redirect.pathname,
-      });
-      res.end();
+      res.redirect(302, result.redirect.pathname);
     } else if (result.missed) {
-      res.writeHead(404);
+      res.status(404).send(html);
+    } else {
+      res.status(200).send(html);
     }
-
-    res.write(html);
-    res.end();
   });
 
   store.close();

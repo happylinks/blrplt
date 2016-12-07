@@ -8,7 +8,7 @@ import rootReducer from 'reducers';
 import appConfig from '../config/main';
 
 const sagaMiddleware = createSagaMiddleware();
-const devtools = typeof window === 'function' && window.devToolsExtension ?
+const devtools = typeof window === 'object' && window.devToolsExtension ?
   window.devToolsExtension :
   (() => noop => noop);
 

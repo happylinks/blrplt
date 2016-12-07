@@ -71,7 +71,7 @@
     "test:local:server": "node -e \"require('./build/lambda.js').handler(require('./server/api-gateway-event.json'), {succeed: v => console.log(v)}, (e, v) => console.log(v))\"",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "aws:config": "node server/configure.js $npm_package_config_accountId $npm_package_config_s3BucketName $npm_package_config_region $npm_package_config_functionName",
-    "aws:setup": "aws s3api get-bucket-location --bucket $npm_package_config_s3BucketName --region $npm_package_config_region || yarn run aws:create-bucket && yarn run aws:package-upload-function && yarn run aws:upload-api-gateway-swagger && yarn run aws:stack:create",
+    "aws:setup": "aws s3api get-bucket-location --bucket $npm_package_config_s3BucketName --region $npm_package_config_region || yarn run aws:bucket:create && yarn run aws:package-upload-function && yarn run aws:upload-api-gateway-swagger && yarn run aws:stack:create",
     "aws:bucket:create": "aws s3 mb s3://$npm_package_config_s3BucketName --region $npm_package_config_region",
     "aws:bucket:delete": "aws s3 rm s3://$npm_package_config_s3BucketName/lambda-function.zip --region $npm_package_config_region; aws s3 rm s3://$npm_package_config_s3BucketName/simple-proxy-api.yaml --region $npm_package_config_region; aws s3 rb s3://$npm_package_config_s3BucketName --region $npm_package_config_region",
     "aws:upload-lambda-function-package": "aws s3 cp ./lambda-function.zip s3://$npm_package_config_s3BucketName --region $npm_package_config_region",
