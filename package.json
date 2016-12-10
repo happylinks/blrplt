@@ -53,10 +53,11 @@
     "redux-saga": "^0.13.0"
   },
   "config": {
-    "s3BucketName": "",
-    "cloudFormationStackName": "",
-    "region": "",
-    "functionName": "",
+    "tmps3BucketName": "blrplt-temp",
+    "s3BucketName": "blrplt-test",
+    "cloudFormationStackName": "blrplt-test",
+    "region": "eu-west-1",
+    "functionName": "blrplt-test",
     "accountId": ""
   },
   "scripts": {

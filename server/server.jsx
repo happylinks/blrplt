@@ -57,6 +57,7 @@ app.get('*', (req, res) => {
     />
   );
 
+  // When first render is done and all saga's are run, render again with updated store.
   store.runSaga(rootSaga).done.then(() => {
     const markup = renderToString(rootComp);
     const html = renderHTML(markup, store);
@@ -71,6 +72,10 @@ app.get('*', (req, res) => {
     }
   });
 
+  // Do first render, starts initial actions.
+  renderToString(rootComp);
+
+  // When the first render is finished, send the END action to redux-saga.
   store.close();
 });
 
