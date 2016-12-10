@@ -54,10 +54,10 @@
   },
   "config": {
     "tmps3BucketName": "blrplt-temp",
-    "s3BucketName": "blrplt-test",
-    "cloudFormationStackName": "blrplt-test",
+    "s3BucketName": "blrplt",
+    "cloudFormationStackName": "blrplt",
     "region": "eu-west-1",
-    "functionName": "blrplt-test",
+    "functionName": "blrplt",
     "accountId": ""
   },
   "scripts": {

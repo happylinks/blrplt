@@ -177,7 +177,7 @@
   "Outputs": {
     "S3BucketSecureURL" : {
       "Value" : { "Fn::Join" : [ "", [ "https://", { "Fn::GetAtt" : [ "WebBucket", "DomainName" ] } ] ] },
-      "Description" : "URL of S3 bucket to hold website content"
+      "Description" : "Name of S3 bucket to hold website content"
     },
     "CDN" : {
       "Value" : { "Fn::Join" : [ "", [ "https://", { "Fn::GetAtt" : [ "CDN", "DomainName" ] } ] ] },
