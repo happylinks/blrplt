@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
@@ -25,7 +24,6 @@ ReactDOM.render(
   document.getElementById('app')
 );
 
-const module: Object = window.module;
 if (module && module.hot) {
   module.hot.accept('./app', () => {
     const NextApp = require('./app').default;
