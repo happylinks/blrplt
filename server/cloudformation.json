@@ -6,6 +6,10 @@
       "Type": "String",
       "Description": "The S3 bucket in which the lambda function code is stored. Bucket names are region-unique, so you must change this."
     },
+    "WebBucketName": {
+      "Type": "String",
+      "Description": "The S3 bucket in which the website code is stored."
+    },
     "LambdaFunctionS3Key": {
       "Type": "String",
       "AllowedPattern": ".*\\.zip",
@@ -20,6 +24,40 @@
     }
   },
   "Resources": {
+    "WebBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "AccessControl": "PublicRead",
+        "BucketName": { "Ref": "WebBucketName" }
+      }
+    },
+    "CDN" : {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties" : {
+        "DistributionConfig" : {
+          "Origins" : [ {
+            "DomainName": {
+              "Fn::GetAtt": [
+                "WebBucket",
+                "DomainName"
+              ]
+            },
+            "Id" : "WebBucket",
+            "S3OriginConfig": {}
+          }],
+          "Enabled" : "true",
+          "DefaultCacheBehavior" : {
+            "TargetOriginId": "WebBucket",
+            "ForwardedValues" : {
+              "QueryString" : "false"
+            },
+            "Compress": "true",
+            "ViewerProtocolPolicy" : "allow-all"
+          },
+          "HttpVersion": "http2"
+        }
+      }
+    },
     "ApiGatewayApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
@@ -137,6 +175,14 @@
     }
   },
   "Outputs": {
+    "S3BucketSecureURL" : {
+      "Value" : { "Fn::Join" : [ "", [ "https://", { "Fn::GetAtt" : [ "WebBucket", "DomainName" ] } ] ] },
+      "Description" : "URL of S3 bucket to hold website content"
+    },
+    "CDN" : {
+      "Value" : { "Fn::Join" : [ "", [ "https://", { "Fn::GetAtt" : [ "CDN", "DomainName" ] } ] ] },
+      "Description" : "URL of Cloudfront bucket to hold website content"
+    },
     "LambdaFunctionConsoleUrl": {
       "Description": "Console URL for the Lambda Function.",
       "Value": {

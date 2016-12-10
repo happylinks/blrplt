@@ -1,5 +1,5 @@
 .happypack
-.vscode/.browse.VC.db*
+.vscode
 /node_modules
 /server/node_modules
 /build*

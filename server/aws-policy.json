@@ -4,6 +4,7 @@
         {
             "Effect": "Allow",
             "Action": [
+                "cloudfront:*",
                 "cloudformation:*",
                 "s3:*",
                 "iam:*",
