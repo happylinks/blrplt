@@ -107,7 +107,7 @@ module.exports = function (env) {
       s3Options: {
         accessKeyId: process.env.AWS_KEY,
         secretAccessKey: process.env.AWS_SECRET,
-        region: 'eu-west-1',
+        region: env.region,
       },
       s3UploadOptions: {
         Bucket: env.bucket,

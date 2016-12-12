@@ -64,7 +64,7 @@
     "start": "node ./scripts/devServer.js",
     "start:dist": "node ./build/server.js",
     "deploy": "yarn run deploy:client && yarn run build:server && yarn run aws:package-upload-update-function",
-    "deploy:client": "webpack --config webpack.config.prod.js --env.bucket $npm_package_config_s3BucketName",
+    "deploy:client": "webpack --config webpack.config.prod.js --env.bucket $npm_package_config_s3BucketName --env.region $npm_package_config_region",
     "build": "yarn run build:client && yarn run build:server",
     "build:client": "webpack --config webpack.config.prod.js --env.noDeploy",
     "build:server": "webpack --config webpack.config.server.js",
