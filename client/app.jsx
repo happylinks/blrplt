@@ -1,10 +1,21 @@
 // @flow
+// System.import polyfill for server-side render.
+if (typeof System === "undefined") {
+  var System = {
+    import: function(path) {
+      return Promise.resolve(require(path));
+    }
+  };
+}
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, ServerRouter, Match } from 'react-router';
 
+import {
+  Movies,
+  Hello,
+} from './asyncRoutes';
 import { Layout } from 'components';
-import { Movies } from 'containers';
 
 type Props = {
   context?: Object,
@@ -22,7 +33,8 @@ class Blrplt extends React.Component { // eslint-disable-line react/prefer-state
     // Declare your routes here.
     const layout = (
       <Layout>
-        <Match pattern="*" component={Movies} />
+        <Match pattern="/movies" component={Movies} />
+        <Match pattern="/hello" component={Hello} />
       </Layout>
     );
 

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import { moviesRequest } from '../actions/movies';
 
@@ -37,6 +38,7 @@ class Movies extends React.Component {
             ))}
           </ul>
         )}
+        <Link to="/hello">Hello</Link>
       </div>
     );
   }
