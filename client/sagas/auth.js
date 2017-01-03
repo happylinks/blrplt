@@ -6,7 +6,7 @@ import * as actions from '../actions/auth';
 
 export function* doLogin(action) {
   try {
-    const res = yield call(post, '/login', action.payload);
+    const res = yield call(post, 'http://localhost:3001/sessions/create', action.payload);
     yield put(actions.loginSuccess(res.id_token));
   } catch (e) {
     console.log(e);
@@ -16,7 +16,7 @@ export function* doLogin(action) {
 
 export function* doLogout() {
   try {
-    yield call(post, '/logout', {});
+    yield call(post, 'http://localhost:3001/sessions/destroy', {});
     yield put(actions.logoutSuccess());
   } catch (e) {
     console.log(e);

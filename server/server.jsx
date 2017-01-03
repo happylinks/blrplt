@@ -64,39 +64,6 @@ if (awsServerlessExpressMiddleware) {
 
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
-app.post('/login', (req, res) => {
-  const jsonBody = JSON.stringify(req.body);
-  const clientRequest = http.request({
-    host: 'localhost',
-    port: 3001,
-    path: '/sessions/create',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Content-Length': Buffer.byteLength(jsonBody),
-    },
-  }, (callres) => {
-    callres.setEncoding('utf8');
-    callres.on('data', (chunk) => {
-      const body = JSON.parse(chunk);
-      const jwtToken = body.id_token;
-      const token = `Bearer ${jwtToken}`;
-      res.cookie('authorization', token, {
-        maxAge: 900000,
-        httpOnly: true,
-      });
-      res.status(200).json({ status: 'ok' });
-    });
-  });
-  clientRequest.write(jsonBody);
-  clientRequest.end();
-});
-
-app.post('/logout', (req, res) => {
-  res.clearCookie('authorization');
-  res.status(200).json({ status: 'ok' });
-});
-
 app.get('*', (req, res) => {
   global.fetch = fetchDefaults(global.fetch, {
     headers: {
