@@ -6,7 +6,9 @@ import * as actions from '../actions/movies';
 
 export function* getMovies() {
   try {
-    const res = yield call(handleRequest, 'https://facebook.github.io/react-native/movies.json');
+    const res = yield call(handleRequest, 'https://facebook.github.io/react-native/movies.json', {
+      noCredentials: true,
+    });
     yield put(actions.moviesSuccess(res.movies || []));
   } catch (e) {
     yield put(actions.moviesFailure(e.response ? e.response.message : null));

@@ -3,8 +3,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, ServerRouter, Match } from 'react-router';
 
-import { Layout } from 'components';
-import { Movies } from 'containers';
+import { Layout, Overview } from 'components';
 
 type Props = {
   context?: Object,
@@ -22,7 +21,7 @@ class Blrplt extends React.Component { // eslint-disable-line react/prefer-state
     // Declare your routes here.
     const layout = (
       <Layout>
-        <Match pattern="*" component={Movies} />
+        <Match pattern="*" component={Overview} />
       </Layout>
     );
 
